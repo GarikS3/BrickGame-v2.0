@@ -1,0 +1,139 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[russian]{babel} 
+\usepackage{fontenc}
+\usepackage[T2A]{fontenc} 
+\usepackage{times} 
+\usepackage{helvet} 
+\usepackage{courier} 
+
+\usepackage{geometry}
+\geometry{top=0cm, left=1cm, right=1cm, bottom=1cm, includeheadfoot}
+
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{0pt}{0pt}
+\titlespacing*{\subsection}{0pt}{0pt}{0pt}
+\let\oldnewpage\newpage
+\renewcommand{\newpage}{\oldnewpage}
+
+\begin{document}
+
+\title{Документация для проекта BrickGame v2.0 (Tetris + Snake)}
+\date{}
+\author{strangez}
+\maketitle
+
+\section{Структура проекта}
+
+\subsection{Библиотека Tetris (\texttt{src/brick\_game/tetris})}
+
+\begin{itemize}[label=--]
+    \item Файлы с исходным кодом на языке C, реализующие логику игры Тетрис.
+    \item Основные функции для взаимодействия с игровым полем, управлением фигурами и обработкой ввода пользователя.
+\end{itemize}
+
+\subsection{Библиотека Snake (\texttt{src/brick\_game/snake})}
+\begin{itemize}[label=--]
+    \item Файлы с исходным кодом на языке C++, реализующие логику игры Змейка.
+    \item Основные функции для взаимодействия с игровым полем, управлением змейкой и обработкой ввода пользователя.
+\end{itemize}
+
+\subsection{Терминальный интерфейс (\texttt{src/gui/cli})}
+\begin{itemize}[label=--]
+    \item Файлы, отвечающие за визуализацию игр Тетрис и Змейка в терминале с использованием библиотеки ncurses.
+    \item Отрисовка игрового поля, обработка ввода пользователя и отображение текущего состояния игры.
+\end{itemize}
+
+\subsection{Десктопный интерфейс (\texttt{src/gui/desktop})}
+\begin{itemize}[label=--]
+    \item Файлы, отвечающие за визуализацию игр с использованием библиотеки Qt.
+    \item Отрисовка игрового поля, обработка ввода пользователя и отображение текущего состояния игры.
+\end{itemize}
+
+\section{Сборка проекта}
+Проект использует систему сборки \texttt{make} с Makefile, включающим следующие цели:
+
+\begin{itemize}
+    \item \texttt{all}: Сборка проекта.
+    \item \texttt{install}: Установка программы в систему.
+    \item \texttt{uninstall}: Удаление программы из системы.
+    \item \texttt{clean}: Очистка временных файлов и папок.
+    \item \texttt{dvi}: Создание файла DVI.
+    \item \texttt{dist}: Создание архива, содержащего необходимые файлы для сборки и использования программы.
+    \item \texttt{gcov report}: Отчёт по покрытию кода.
+    \item \texttt{clang check}: Проверка на необходимость форматирования кода.
+    \item \texttt{clang format}: Форматирование кода.
+    \item \texttt{valgrind}: Проверка на утечки памяти.
+    \item \texttt{rebuild}: Удаление программы и новая установка.
+\end{itemize}
+
+\section{Инструкции по установке и запуску}
+
+\begin{enumerate}
+    \item \textbf{Установка зависимостей:}
+        \begin{itemize}
+            \item Установите компилятор gcc для сборки проекта.
+            \item Установите библиотеку ncurses для консольного варианта.
+            \item Установите библиотеку Qt для десктопного варианта.
+        \end{itemize}
+    \item \textbf{Сборка проекта:}
+        \begin{itemize}
+            \item Выполните \texttt{make all} для сборки проекта.
+        \end{itemize}
+    \item \textbf{Установка:}
+        \begin{itemize}
+            \item Выполните \texttt{make install} для установки программы в систему.
+        \end{itemize}
+    \item \textbf{Запуск:}
+        \begin{itemize}
+            \item Выполните \texttt{make run\_cli} для запуска программы в консольном варианте.
+            \item Выполните \texttt{make run\_desktop} для запуска программы в десктопном варианте.
+        \end{itemize}
+\end{enumerate}
+
+\section{Использование программы Тетрис}
+
+\begin{enumerate}
+    \item \textbf{Управление:}
+        \begin{itemize}
+            \item \texttt{keyleft}, \texttt{keyright} — перемещение фигуры влево и вправо.
+            \item \texttt{keydown} — падение фигуры вниз.
+            \item \texttt{SPACE} — поворот фигуры.
+            \item \texttt{p} — постановка игры на паузу / снятие с паузы.
+            \item \texttt{q} — выход из игры.
+        \end{itemize}
+    \item \textbf{Игра:}
+        \begin{itemize}
+            \item Вращение и перемещение фигур.
+            \item Ускорение падения фигуры.
+            \item Показ следующей фигуры.
+            \item Уничтожение заполненных линий.
+            \item Завершение игры при достижении верхней границы игрового поля.
+        \end{itemize}
+\end{enumerate}
+
+\section{Использование программы Змейка}
+
+\begin{enumerate}
+    \item \textbf{Управление:}
+        \begin{itemize}
+            \item \texttt{keyleft}, \texttt{keyright}, \texttt{keyup}, \texttt{keydown} — перемещение змейки по игровому полю.
+            \item \texttt{p} — постановка игры на паузу / снятие с паузы.
+            \item \texttt{q} — выход из игры.
+        \end{itemize}
+    \item \textbf{Игра:}
+        \begin{itemize}
+            \item Управление направлением движения змейки.
+            \item Генерация нового яблока на поле.
+            \item Увеличение длины змейки при съедании яблока.
+            \item Победа в игре в случае полного заполнения поля.
+            \item Завершение игры при столкновении головы змейки с границами игрового поля или её собственным телом.
+        \end{itemize}
+\end{enumerate}
+
+\section{Тестирование}
+
+Проект включает в себя unit-тесты Тетриса с использованием библиотеки \texttt{check} и unit-тесты Змейки с использованием библиотеки \texttt{gtest}.
+
+\end{document}
